@@ -6,16 +6,17 @@ import InfiniteMarquee from './InfiniteMarquee';
 import { LocationTag } from './ui/location-tag';
 import AnimatedTextCycle from './ui/animated-text-cycle';
 
+// Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger);
 
-const Hero = ({ onRegisterClick }) => {
+const Hero = () => {
   const sectionRef = useRef(null);
   const contentRef = useRef(null);
   const bgRef = useRef(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Staggered text reveal on load
+      // Staggered text reveal
       gsap.from('.hero-animate', {
         y: 60,
         opacity: 0,
@@ -25,7 +26,7 @@ const Hero = ({ onRegisterClick }) => {
         delay: 0.5
       });
 
-      // Parallax and Zoom on Scroll
+      // Parallax scroll effects
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
@@ -48,6 +49,7 @@ const Hero = ({ onRegisterClick }) => {
       ref={sectionRef}
       className="relative w-full h-screen overflow-hidden flex items-center justify-center bg-[#050a05] will-change-transform"
     >
+      {/* Background layer */}
       <div ref={bgRef} className="absolute inset-0 z-0 opacity-40 mix-blend-screen">
         <GridScan
           sensitivity={0.8}
@@ -63,12 +65,10 @@ const Hero = ({ onRegisterClick }) => {
         />
       </div>
 
-      {/* Grid Lines Overlay */}
       <div className="absolute inset-0 z-0 bg-[linear-gradient(rgba(0,255,65,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(0,255,65,0.05)_1px,transparent_1px)] bg-[size:4rem_4rem] [transform:perspective(500px)_rotateX(60deg)_translateY(-100px)_translateZ(-200px)] opacity-30 pointer-events-none"></div>
-
       <div className="scanline z-10 opacity-30 pointer-events-none"></div>
-      <div className="absolute inset-0 bg-circuit-pattern opacity-[0.03] z-0 pointer-events-none"></div>
 
+      {/* Main Hero Content */}
       <div ref={contentRef} className="relative z-20 text-center px-4 max-w-4xl mx-auto flex flex-col items-center">
         <div className="hero-animate mb-8">
           <LocationTag city="Bhilai" country="IND" timezone="IST" />
@@ -82,7 +82,6 @@ const Hero = ({ onRegisterClick }) => {
           <span className="text-shadow-neon">HACKBIOS</span> <span className="text-[#00ff41]">3.0</span>
         </h1>
 
-        {/* Fixed: Replaced <p> nesting with a <div> wrapper to comply with HTML standards */}
         <div className="hero-animate font-sans text-xl md:text-2xl text-gray-300 mb-12 max-w-2xl mx-auto leading-relaxed opacity-80">
           <span>Where Ideas Boot Into <br className="md:hidden" /></span>
           <div className="inline-block">
@@ -95,17 +94,26 @@ const Hero = ({ onRegisterClick }) => {
           <span>.<br className="hidden md:block" /> Build, innovate, and conquer at Central India's premier hackathon.</span>
         </div>
 
-        <div className="hero-animate flex flex-col sm:flex-row gap-6 justify-center items-center">
-          <button
-            onClick={onRegisterClick}
-            className="px-8 py-4 bg-transparent border-2 border-[#00ff41] text-[#00ff41] font-mono text-lg uppercase tracking-widest hover:bg-[#00ff41] hover:text-[#050a05] transition-all duration-300 box-shadow-neon interactive hover:-translate-y-1"
+        {/* Buttons Stacked Vertically and Centered */}
+        <div className="hero-animate flex flex-col gap-4 justify-center items-center mt-4">
+
+          <a
+            href="https://devfolio.co"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group relative transition-all duration-300 hover:scale-105 active:scale-95"
+            aria-label="Register via Devfolio"
           >
-            Register Now
-          </button>
+            <img
+              src="/assets/devfolio-btn.png"
+              alt="Apply via Devfolio"
+              className="h-14 w-auto object-contain cursor-pointer"
+            />
+          </a>
 
           <a
             href="#"
-            className="px-8 py-4 bg-transparent border-2 border-[#00e5ff] text-[#00ff41] font-mono text-lg uppercase tracking-widest hover:bg-[#00e5ff] hover:text-[#050a05] transition-all duration-300 hover:shadow-[0_0_15px_rgba(0,229,255,0.3)] interactive hover:-translate-y-1"
+            className="px-8 py-4 bg-transparent border-2 border-[#00e5ff] text-[#00e5ff] font-mono text-lg uppercase tracking-widest hover:bg-[#00e5ff] hover:text-[#050a05] transition-all duration-300 hover:shadow-[0_0_15px_rgba(0,229,255,0.3)] interactive hover:-translate-y-1 w-[280px] text-center"
           >
             Download Brochure
           </a>
