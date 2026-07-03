@@ -6,6 +6,7 @@ import CustomCursor from './components/CustomCursor';
 import StaggeredMenu from './components/StaggeredMenu';
 import FloatingSocials from './components/FloatingSocials';
 import Hero from './components/Hero';
+import Sponsors from './components/Sponsors'; // Import the new component
 import Stats from './components/Stats';
 import GooeyBanner from './components/GooeyBanner';
 import About from './components/About';
@@ -69,7 +70,7 @@ function App() {
       const sections = document.querySelectorAll('section, main > div');
       sections.forEach((section) => {
         section.classList.add('section-reveal');
-        
+
         ScrollTrigger.create({
           trigger: section,
           start: 'top 85%',
@@ -89,16 +90,16 @@ function App() {
     <div className="bg-[#050a05] text-white min-h-screen selection:bg-[#00ff41] selection:text-[#050a05]">
       <CustomCursor />
       <FloatingSocials />
-      
+
       {booting ? (
         <BootAnimation onComplete={() => setBooting(false)} />
       ) : (
         <div className="animate-fade-in overflow-x-hidden">
-          <StaggeredMenu 
+          <StaggeredMenu
             items={menuItems}
             socialItems={socialItems}
           />
-          
+
           <main className="relative">
             {/* Global cinematic background particles/glow could go here */}
             <div className="fixed inset-0 pointer-events-none z-0">
@@ -109,6 +110,7 @@ function App() {
             <div id="hero-section"><Hero onRegisterClick={() => setIsRegisterOpen(true)} /></div>
             <div className="relative z-10">
               <Stats />
+              <Sponsors />
               <GooeyBanner />
               {/* <About /> */}
               {/* <Tracks /> */}
@@ -122,13 +124,13 @@ function App() {
               <Contact />
             </div>
           </main>
-          
+
           <CinematicFooter />
 
 
-          <RegisterModal 
-            isOpen={isRegisterOpen} 
-            onClose={() => setIsRegisterOpen(false)} 
+          <RegisterModal
+            isOpen={isRegisterOpen}
+            onClose={() => setIsRegisterOpen(false)}
           />
         </div>
       )}
