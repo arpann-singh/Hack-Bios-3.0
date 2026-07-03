@@ -106,7 +106,7 @@ const Hero = () => {
           >
             <img
               src="/assets/devfolio-btn.png"
-              alt="Apply via Devfolio"
+              alt="DEVFOLIO LOGO"
               className="h-14 w-auto object-contain cursor-pointer"
             />
           </a>
