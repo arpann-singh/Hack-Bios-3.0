@@ -20,7 +20,7 @@ const Sponsors = () => {
                     >
                         <img
                             src="/assets/devfolio-logo.svg"
-                            alt="Devfolio"
+                            alt="DEVFOLIO LOGO"
                             className="h-20 w-auto"
                         />
                     </a>
