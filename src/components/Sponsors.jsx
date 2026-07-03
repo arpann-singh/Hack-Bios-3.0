@@ -11,13 +11,19 @@ const Sponsors = () => {
             <div className="mb-16">
                 <h3 className="text-[#00e5ff] font-mono text-xl mb-8 uppercase tracking-widest">Diamond Sponsor</h3>
                 <div className="flex justify-center items-center">
-                    <div className="p-8 border border-[#00e5ff]/30 bg-[#00e5ff]/5 hover:bg-[#00e5ff]/10 transition-all duration-300 rounded-lg group">
+                    <a
+                        href="https://devfolio.co"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group block p-8 border border-[#00e5ff]/30 bg-[#00e5ff]/5 hover:bg-[#00e5ff]/10 transition-all duration-300 rounded-lg"
+                        aria-label="Devfolio"
+                    >
                         <img
                             src="/assets/devfolio-logo.svg"
                             alt="Devfolio"
-                            className="h-20 w-auto grayscale group-hover:grayscale-0 transition-all duration-300"
+                            className="h-20 w-auto"
                         />
-                    </div>
+                    </a>
                 </div>
             </div>
 

@@ -110,12 +110,12 @@ function App() {
             <div id="hero-section"><Hero onRegisterClick={() => setIsRegisterOpen(true)} /></div>
             <div className="relative z-10">
               <Stats />
-              <Sponsors />
               <GooeyBanner />
               {/* <About /> */}
               {/* <Tracks /> */}
               {/* <PrizePool /> */}
               {/* <Timeline /> */}
+              <Sponsors />
               <CallForSponsors />
               <SponsorMarquee />
               <PreviousEdition />
