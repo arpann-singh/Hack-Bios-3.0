@@ -6,7 +6,6 @@ import InfiniteMarquee from './InfiniteMarquee';
 import { LocationTag } from './ui/location-tag';
 import AnimatedTextCycle from './ui/animated-text-cycle';
 
-// Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger);
 
 const Hero = () => {
@@ -15,8 +14,19 @@ const Hero = () => {
   const bgRef = useRef(null);
 
   useEffect(() => {
+    const existingScript = document.querySelector(
+      'script[src="https://apply.devfolio.co/v2/sdk.js"]'
+    );
+
+    if (!existingScript) {
+      const script = document.createElement('script');
+      script.src = 'https://apply.devfolio.co/v2/sdk.js';
+      script.async = true;
+      script.defer = true;
+      document.body.appendChild(script);
+    }
+
     const ctx = gsap.context(() => {
-      // Staggered text reveal
       gsap.from('.hero-animate', {
         y: 60,
         opacity: 0,
@@ -26,7 +36,6 @@ const Hero = () => {
         delay: 0.5
       });
 
-      // Parallax scroll effects
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
@@ -41,7 +50,9 @@ const Hero = () => {
       tl.to(contentRef.current, { y: -150, opacity: 0.2, scale: 0.9, ease: 'none' }, 0);
     });
 
-    return () => ctx.revert();
+    return () => {
+      ctx.revert();
+    };
   }, []);
 
   return (
@@ -49,7 +60,6 @@ const Hero = () => {
       ref={sectionRef}
       className="relative w-full h-screen overflow-hidden flex items-center justify-center bg-[#050a05] will-change-transform"
     >
-      {/* Background layer */}
       <div ref={bgRef} className="absolute inset-0 z-0 opacity-40 mix-blend-screen">
         <GridScan
           sensitivity={0.8}
@@ -68,7 +78,6 @@ const Hero = () => {
       <div className="absolute inset-0 z-0 bg-[linear-gradient(rgba(0,255,65,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(0,255,65,0.05)_1px,transparent_1px)] bg-[size:4rem_4rem] [transform:perspective(500px)_rotateX(60deg)_translateY(-100px)_translateZ(-200px)] opacity-30 pointer-events-none"></div>
       <div className="scanline z-10 opacity-30 pointer-events-none"></div>
 
-      {/* Main Hero Content */}
       <div ref={contentRef} className="relative z-20 text-center px-4 max-w-4xl mx-auto flex flex-col items-center">
         <div className="hero-animate mb-8">
           <LocationTag city="Bhilai" country="IND" timezone="IST" />
@@ -86,30 +95,26 @@ const Hero = () => {
           <span>Where Ideas Boot Into <br className="md:hidden" /></span>
           <div className="inline-block">
             <AnimatedTextCycle
-              words={["Reality", "Innovation", "Code", "Future", "Execution"]}
+              words={['Reality', 'Innovation', 'Code', 'Future', 'Execution']}
               interval={2500}
               className="text-[#00ff41] font-mono tracking-wider ml-1.5 drop-shadow-[0_0_10px_rgba(0,255,65,0.6)]"
             />
           </div>
-          <span>.<br className="hidden md:block" /> Build, innovate, and conquer at Central India's premier hackathon.</span>
+          <span>.<br className="hidden md:block" /> Build, innovate, and conquer at Central India&apos;s premier hackathon.</span>
         </div>
 
-        {/* Buttons Stacked Vertically and Centered */}
         <div className="hero-animate flex flex-col gap-4 justify-center items-center mt-4">
-
-          <a
-            href="https://devfolio.co"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group relative transition-all duration-300 hover:scale-105 active:scale-95"
-            aria-label="Register via Devfolio"
-          >
-            <img
-              src="/assets/devfolio-btn.png"
-              alt="DEVFOLIO LOGO"
-              className="h-14 w-auto object-contain cursor-pointer"
+          <div className="w-[312px] h-[44px] flex justify-center items-center">
+            <div
+              className="apply-button"
+              data-hackathon-slug="hackbios2k26"
+              data-button-theme="dark-inverted"
+              style={{
+                height: '44px',
+                width: '312px'
+              }}
             />
-          </a>
+          </div>
 
           <a
             href="#"
@@ -121,7 +126,9 @@ const Hero = () => {
       </div>
 
       <div className="absolute bottom-[100px] left-1/2 -translate-x-1/2 z-20 animate-bounce cursor-pointer group">
-        <p className="text-[#00ff41] font-mono text-xs uppercase tracking-widest mb-2 opacity-50 group-hover:opacity-100 transition-opacity">Scroll Down</p>
+        <p className="text-[#00ff41] font-mono text-xs uppercase tracking-widest mb-2 opacity-50 group-hover:opacity-100 transition-opacity">
+          Scroll Down
+        </p>
         <div className="w-[1px] h-12 bg-gradient-to-b from-[#00ff41] to-transparent mx-auto"></div>
       </div>
 
