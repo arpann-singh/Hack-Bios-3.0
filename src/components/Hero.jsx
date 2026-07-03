@@ -105,7 +105,7 @@ const Hero = () => {
             aria-label="Register via Devfolio"
           >
             <img
-              src="/assets/devfolio-btn.png"
+              src="/assets/devfolio-logo.png"
               alt="DEVFOLIO LOGO"
               className="h-14 w-auto object-contain cursor-pointer"
             />
